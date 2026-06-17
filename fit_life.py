@@ -1,26 +1,85 @@
 # Проект FitLife - MVP версия 1.0
 
+# Задаем константы
+WATER_PER_KG = 30
+MLITER_PER_LITER = 1000
 
-# 1. Знакомство
-# TODO: Спроси у пользователя имя и сохрани в переменную user_name
-# TODO: Спроси возраст и сохрани в переменную user_age (не забудь преобразовать в число)
+MIN_AGE = 5
+MAX_AGE = 99
 
+MIN_WEIGHT = 10
+MAX_WEIGHT = 500
 
-# 2. Сбор данных
-# TODO: Запроси вес (в кг) и сохрани в user_weight (тип float)
-# TODO: Запроси рост (в метрах, например 1.75) и сохрани в user_height (тип float)
+MIN_HEIGHT = 0.5
+MAX_HEIGHT = 2.60
 
+ROUND_DEPTH = 1
 
-# 3. Логика расчетов (Функции как "черный ящик": используем арифметику)
-# Формула ИМТ: вес разделить на (рост в квадрате)
-# TODO: Рассчитай bmi (Индекс массы тела)
+ERROR_MESSAGE = "Ошибка: Введено неверное значение."
 
+# Запрос имени пользователя и его проверка
+user_name = input("Привет! Как я могу к тебе обращаться? ")
+while not user_name:
+    print(ERROR_MESSAGE)
+    user_name = input("Пожалуйста, представьтесь: ")
 
-# Подсчет воды: вес * 30 мл
-# TODO: Рассчитай water_needed
+# Запрос возраста и его проверка
+while True:
+    user_age_input = input(
+        "Укажи, пожалуйста, свой возраст "
+        f"(от {MIN_AGE} до {MAX_AGE} лет): ")
+    try:
+        user_age = int(user_age_input)
+        if (MIN_AGE <= user_age <= MAX_AGE):
+            break
+        print(ERROR_MESSAGE)
+    except ValueError:
+        print(ERROR_MESSAGE)
 
+# Запрос веса в кг.
+while True:
+    user_weight_input = input(
+        "Укажи, пожалуйста, свой вес в килограммах, "
+        "используя точку (например 75.6): ")
+    try:
+        user_weight = float(user_weight_input)
+        if (MIN_WEIGHT <= user_weight <= MAX_WEIGHT):
+            break
+        print(ERROR_MESSAGE)
+    except ValueError:
+        print(ERROR_MESSAGE)
 
-# 4. Вывод красивого результата
-# TODO: Используй f-строку, чтобы вывести приветствие, например: "Привет, Иван!"
-# TODO: Выведи возраст, ИМТ (округленный до 1 знака) и норму воды.
-print("Расчет окончен. Будьте здоровы!")
+# Запрос роста в метрах
+while True:
+    user_height_input = input(
+        "Укажи, пожалуйста, свой рост в метрах, "
+        "используя точку (например 1.80): ")
+    try:
+        user_height = float(user_height_input)
+        if (MIN_HEIGHT <= user_height <= MAX_HEIGHT):
+            break
+        print(ERROR_MESSAGE)
+    except ValueError:
+        print(ERROR_MESSAGE)
+
+# Расчет индекса массы тела
+user_bmi = round((user_weight / (user_height ** 2)), ROUND_DEPTH)
+
+# Расчет нормы воды
+water_mliter = (user_weight * WATER_PER_KG)
+water_liter = round((water_mliter / MLITER_PER_LITER), ROUND_DEPTH)
+
+# Вывод резуьтата
+print(
+    "\n"
+    "\n"
+    "\n"
+    f"Отчет для пользователя: {user_name} ({user_age} г.)"
+    "\n"
+    f"Твой Индекс Массы Тела: {user_bmi}"
+    "\n"
+    f"Рекомендуемая норма воды: {water_liter} л. в день"
+    "\n"
+    "\n"
+    "\n"
+    "Расчет окончен. Будьте здоровы!")
