@@ -1,4 +1,4 @@
-# Проект FitLife - MVP версия 1.0
+# Проект FitLife - MVP версия 1.1
 
 # Задаем константы
 WATER_PER_KG = 30
@@ -25,11 +25,10 @@ while not user_name:
 
 # Запрос возраста и его проверка
 while True:
-    user_age_input = input(
-        "Укажи, пожалуйста, свой возраст "
-        f"(от {MIN_AGE} до {MAX_AGE} лет): ")
     try:
-        user_age = int(user_age_input)
+        user_age = int(input(
+            "Укажи, пожалуйста, свой возраст "
+            f"(от {MIN_AGE} до {MAX_AGE} лет): "))
         if (MIN_AGE <= user_age <= MAX_AGE):
             break
         print(ERROR_MESSAGE)
@@ -38,11 +37,10 @@ while True:
 
 # Запрос веса в кг.
 while True:
-    user_weight_input = input(
-        "Укажи, пожалуйста, свой вес в килограммах, "
-        "используя точку (например 75.6): ")
     try:
-        user_weight = float(user_weight_input)
+        user_weight = float(input(
+            "Укажи, пожалуйста, свой вес в килограммах, "
+            "используя точку (например 75.6): "))
         if (MIN_WEIGHT <= user_weight <= MAX_WEIGHT):
             break
         print(ERROR_MESSAGE)
@@ -51,11 +49,10 @@ while True:
 
 # Запрос роста в метрах
 while True:
-    user_height_input = input(
-        "Укажи, пожалуйста, свой рост в метрах, "
-        "используя точку (например 1.80): ")
     try:
-        user_height = float(user_height_input)
+        user_height = float(input(
+            "Укажи, пожалуйста, свой рост в метрах, "
+            "используя точку (например 1.80): "))
         if (MIN_HEIGHT <= user_height <= MAX_HEIGHT):
             break
         print(ERROR_MESSAGE)
@@ -70,16 +67,9 @@ water_mliter = (user_weight * WATER_PER_KG)
 water_liter = round((water_mliter / MLITER_PER_LITER), ROUND_DEPTH)
 
 # Вывод резуьтата
-print(
-    "\n"
-    "\n"
-    "\n"
-    f"Отчет для пользователя: {user_name} ({user_age} г.)"
-    "\n"
-    f"Твой Индекс Массы Тела: {user_bmi}"
-    "\n"
-    f"Рекомендуемая норма воды: {water_liter} л. в день"
-    "\n"
-    "\n"
-    "\n"
-    "Расчет окончен. Будьте здоровы!")
+print(f"""
+Отчет для пользователя: {user_name} ({user_age} г.)
+Твой Индекс Массы Тела: {user_bmi}
+Рекомендуемая норма воды: {water_liter} л. в день
+
+Расчет окончен. Будьте здоровы!""")
